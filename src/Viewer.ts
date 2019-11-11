@@ -70,13 +70,13 @@ export class Viewer extends BaseComponent implements IUVComponent {
                 const extension = new m.default();
                 extension.name = Extension.OSD;
                 return extension;
-            }
-            // [Extension.PDF]: async () => {
-            //     const m = await import("./extensions/uv-pdf-extension/Extension") as any;
-            //     const extension = new m.default();
-            //     extension.name = Extension.PDF;
-            //     return extension;
-            // },
+            },
+             [Extension.PDF]: async () => {
+                 const m = await import("./extensions/uv-pdf-extension/Extension") as any;
+                 const extension = new m.default();
+                 extension.name = Extension.PDF;
+                 return extension;
+             }
             // [Extension.VIRTEX]: async () => {
             //     const m = await import("./extensions/uv-virtex-extension/Extension") as any;
             //     const extension = new m.default();

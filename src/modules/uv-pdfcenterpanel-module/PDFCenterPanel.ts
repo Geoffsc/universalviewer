@@ -1,6 +1,7 @@
 import { BaseEvents } from "../uv-shared-module/BaseEvents";
 import { CenterPanel } from "../uv-shared-module/CenterPanel";
 import { Events } from "../../extensions/uv-pdf-extension/Events";
+import { PdfExtension } from "../../extensions/uv-pdf-extension";
 import { Bools } from "@edsilv/utils";
 import { AnnotationBody, Canvas, IExternalResource } from "manifesto.js";
 
@@ -28,6 +29,7 @@ export class PDFCenterPanel extends CenterPanel {
     private _renderTask: any;
     private _scale: number = 0.7;
     private _viewport: any;
+    isCreated: boolean = false;
 
     constructor($element: JQuery) {
         super($element);
@@ -187,6 +189,23 @@ export class PDFCenterPanel extends CenterPanel {
 
             this._render(this._pageIndex);
         });
+
+        this.component.subscribe(BaseEvents.OPEN_EXTERNAL_RESOURCE, (resources: IExternalResource[]) => {
+            this.whenResized(() => {
+                if (!this.isCreated) this.createUI();
+                this.openMedia(resources);
+            });
+        });
+    }
+
+    createUI(){
+
+        import(/* webpackChunkName: "pdf" */ 'pdf').then(() => { 
+
+        })
+
+
+        this.isCreated = true;
     }
     
     disablePrevButton(): void {

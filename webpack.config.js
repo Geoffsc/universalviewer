@@ -66,6 +66,10 @@ const config = {
                     test: /[\\/]node_modules[\\/]openseadragon[\\/]/,
                     priority: -9
                 },
+                pdf: {
+                    test: /[\\/]node_modules[\\/]pdf[\\/]/,
+                    priority: -7
+                },
                 default: {
                     minChunks: 2,
                     priority: -20,
